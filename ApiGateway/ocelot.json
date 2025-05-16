@@ -8,7 +8,7 @@
         { "Host": "localhost", "Port": 5012 }
       ],
       "UpstreamPathTemplate": "/api/Account/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -18,7 +18,7 @@
         { "Host": "localhost", "Port": 5012 }
       ],
       "UpstreamPathTemplate": "/api/TaiKhoan/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
 
@@ -30,7 +30,7 @@
         { "Host": "localhost", "Port": 5232 }
       ],
       "UpstreamPathTemplate": "/api/AccessControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
 
@@ -42,7 +42,7 @@
         { "Host": "localhost", "Port": 5195 }
       ],
       "UpstreamPathTemplate": "/api/CartControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -52,7 +52,7 @@
         { "Host": "localhost", "Port": 5195 }
       ],
       "UpstreamPathTemplate": "/api/Order/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
 
@@ -64,7 +64,7 @@
         { "Host": "localhost", "Port": 5237 }
       ],
       "UpstreamPathTemplate": "/api/Chat/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -74,7 +74,7 @@
         { "Host": "localhost", "Port": 5237 }
       ],
       "UpstreamPathTemplate": "/api/Log/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -84,7 +84,7 @@
         { "Host": "localhost", "Port": 5237 }
       ],
       "UpstreamPathTemplate": "/api/Statistics/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -94,7 +94,7 @@
         { "Host": "localhost", "Port": 5237 }
       ],
       "UpstreamPathTemplate": "/api/HomeControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
 
@@ -106,7 +106,7 @@
         { "Host": "localhost", "Port": 5115 }
       ],
       "UpstreamPathTemplate": "/api/Brand/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -116,7 +116,7 @@
         { "Host": "localhost", "Port": 5115 }
       ],
       "UpstreamPathTemplate": "/api/Category/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -126,7 +126,7 @@
         { "Host": "localhost", "Port": 5115 }
       ],
       "UpstreamPathTemplate": "/api/Product/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
 
@@ -138,7 +138,7 @@
         { "Host": "localhost", "Port": 5015 }
       ],
       "UpstreamPathTemplate": "/api/ChucNang/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -148,7 +148,7 @@
         { "Host": "localhost", "Port": 5015 }
       ],
       "UpstreamPathTemplate": "/api/ChucVu/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -158,7 +158,7 @@
         { "Host": "localhost", "Port": 5015 }
       ],
       "UpstreamPathTemplate": "/api/HanhDong/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
 
     {
@@ -168,7 +168,7 @@
         { "Host": "localhost", "Port": 5015 }
       ],
       "UpstreamPathTemplate": "/api/PhanQuyen/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     }
   ],
   "GlobalConfiguration": {
