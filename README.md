@@ -1,6 +1,6 @@
 ### Cài đặt cơ sở dữ liệu chính
 Cài đặt cơ sở dữ liệu từ file database.sql 
-Chỉnh đường dẫn đến cơ sở dữ liệu trong file: appsettings.json và file OnlineShopContext.cs
+Chỉnh đường dẫn đến cơ sở dữ liệu trong file: appsettings.json và file OnlineShopContext.cs của mỗi service
 ### Cài đặt kho lưu trữ hình ảnh
 Tải minio qua link sau: https://dl.min.io/server/minio/release/windows-amd64/minio.exe 
 Lệnh chạy minio:
@@ -9,7 +9,7 @@ Lệnh chạy minio:
 ```
 Đăng nhập vào kho lưu trữ ảnh này bằng user và pass minioadmin
 Tạo 1 bucket mới tên là shopdogiadung và đẩy các hỉnh ảnh troing thư mục images vào bucket
-Lấy accesskey và SecretKey thay vào file appsettings.json
+Lấy accesskey và SecretKey thay vào file appsettings.json của mỗi service
 ### Tải và cài đặt mongoDB 
 Đã cài đặt tự động thêm dữ liệu vào mongoDB chỉ cần cài đặt là tự động thêm vào máy local
 ### Khác:
