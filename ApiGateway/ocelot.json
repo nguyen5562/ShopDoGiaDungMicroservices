@@ -116,7 +116,7 @@
     },
 
     {
-      "DownstreamPathTemplate": "/orderHub/{**catchAll}",
+      "DownstreamPathTemplate": "/orderHub/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -124,8 +124,9 @@
           "Port": 5195
         }
       ],
-      "UpstreamPathTemplate": "/orderHub/{**catchAll}",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamPathTemplate": "/orderHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "EnableWebSocket": true
     },
 
 
@@ -219,7 +220,7 @@
     },
 
     {
-      "DownstreamPathTemplate": "/chathub/{**catchAll}",
+      "DownstreamPathTemplate": "/chathub/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -227,8 +228,9 @@
           "Port": 5237
         }
       ],
-      "UpstreamPathTemplate": "/chathub/{**catchAll}",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamPathTemplate": "/chathub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "EnableWebSocket": true
     },
 
 
