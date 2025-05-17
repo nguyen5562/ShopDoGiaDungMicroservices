@@ -18,8 +18,6 @@ public partial class OtherDbContext : DbContext
         _configuration = configuration;
     }
 
-    public virtual DbSet<Chitietdonhang> Chitietdonhangs { get; set; }
-
     public virtual DbSet<Danhgiasanpham> Danhgiasanphams { get; set; }
 
     public virtual DbSet<Danhmucsanpham> Danhmucsanphams { get; set; }
@@ -42,31 +40,12 @@ public partial class OtherDbContext : DbContext
 
     public virtual DbSet<Taikhoan> Taikhoans { get; set; }
 
-    public virtual DbSet<Vanchuyen> Vanchuyens { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
          => optionsBuilder.UseSqlServer("Data Source=MYLAB\\NGUYEN;Initial Catalog=OnlineShop;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
        // => optionsBuilder.UseSqlServer(_configuration.GetConnectionString("AwsDB"));
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Chitietdonhang>(entity =>
-        {
-            entity.HasKey(e => new { e.MaDonHang, e.MaSp });
-
-            entity.ToTable("CHITIETDONHANG");
-
-            entity.Property(e => e.MaSp).HasColumnName("MaSP");
-
-            entity.HasOne(d => d.MaDonHangNavigation).WithMany(p => p.Chitietdonhangs)
-                .HasForeignKey(d => d.MaDonHang)
-                .HasConstraintName("FK_CHITIETDONHANG_DONHANG");
-
-            entity.HasOne(d => d.MaSpNavigation).WithMany(p => p.Chitietdonhangs)
-                .HasForeignKey(d => d.MaSp)
-                .HasConstraintName("FK_CHITIETDONHANG_SANPHAM");
-        });
-
         modelBuilder.Entity<ChucNang>(entity =>
         {
             entity.HasKey(e => e.MaChucNang).HasName("PK__ChucNang__B26DC257C32A6B52");

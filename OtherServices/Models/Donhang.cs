@@ -15,7 +15,7 @@ public partial class Donhang
 
     public DateOnly? NgayLap { get; set; }
 
-    public virtual ICollection<Chitietdonhang> Chitietdonhangs { get; set; } = new List<Chitietdonhang>();
+    //public virtual ICollection<Chitietdonhang> Chitietdonhangs { get; set; } = new List<Chitietdonhang>();
 
     public virtual Taikhoan? MaTaiKhoanNavigation { get; set; }
 

@@ -23,53 +23,6 @@ namespace OtherServices.Services.Implementations
         // Implement all methods from IProductService
 
         // Admin functions
-        public async Task<IActionResult> GetProducts(int page, int pageSize)
-        {
-            IQueryable<SanPhamct> query = from sp in _context.Sanphams
-                                          join h in _context.Hangsanxuats on sp.MaHang equals h.MaHang
-                                          join dm in _context.Danhmucsanphams on sp.MaDanhMuc equals dm.MaDanhMuc
-                                          select new SanPhamct
-                                          {
-                                              MaSp = sp.MaSp,
-                                              TenSp = sp.TenSp,
-                                              MoTa = sp.MoTa,
-                                              Anh1 = sp.Anh1,
-                                              Anh2 = sp.Anh2,
-                                              Anh3 = sp.Anh3,
-                                              Anh4 = sp.Anh4,
-                                              Anh5 = sp.Anh5,
-                                              Anh6 = sp.Anh6,
-                                              SoLuongDaBan = sp.SoLuongDaBan,
-                                              SoLuongTrongKho = sp.SoLuongTrongKho,
-                                              GiaTien = sp.GiaTien,
-                                              Hang = h.TenHang,
-                                              DanhMuc = dm.TenDanhMuc,
-                                              MaHang = h.MaHang,
-                                              MaDanhMuc = dm.MaDanhMuc
-                                          };
-
-            var totalItemCount = await query.CountAsync();
-            var model = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-            var httpContext = _httpContextAccessor.HttpContext;
-            // Tạo Pre-signed URL cho mỗi ảnh trước khi trả về
-            foreach (var sp in model)
-            {
-                sp.Anh1 = await _minioService.GetPreSignedUrlAsync(sp.Anh1,httpContext );
-                sp.Anh2 = await _minioService.GetPreSignedUrlAsync(sp.Anh2, httpContext);
-                sp.Anh3 = await _minioService.GetPreSignedUrlAsync(sp.Anh3,httpContext);
-                sp.Anh4 = await _minioService.GetPreSignedUrlAsync(sp.Anh4,httpContext);
-                sp.Anh5 = await _minioService.GetPreSignedUrlAsync(sp.Anh5,httpContext);
-                sp.Anh6 = await _minioService.GetPreSignedUrlAsync(sp.Anh6,httpContext);
-            }
-
-            return new OkObjectResult(new
-            {
-                sanpham = model,
-                totalItems = totalItemCount,
-                page = page,
-                pageSize = pageSize
-            });
-        }
         public async Task<SanPhamct> GetProductDetailAsync(int productId)
         {
             var httpContext = _httpContextAccessor.HttpContext;
@@ -113,195 +66,37 @@ namespace OtherServices.Services.Implementations
 
             return sanpham;
         }
-        public async Task AddProduct(SanphamDto model)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model), "Thông tin sản phẩm không hợp lệ.");
-            }
+        
+        //public async Task<(bool IsSuccess, string Message)> UpdateCartItemQuantityAsync(int productId, int quantity)
+        //{
+        //    if (quantity <= 0)
+        //    {
+        //        return (false, "Số lượng phải lớn hơn 0.");
+        //    }
 
-            // Tạo đối tượng Sanpham từ model
-            var spmoi = new Sanpham
-            {
-                TenSp = model.TenSP,
-                MoTa = model.MoTa,
-                SoLuongTrongKho = model.SoLuongTrongKho,
-                GiaTien = model.GiaTien,
-                MaDanhMuc = model.DanhMuc,
-                MaHang = model.Hang,
-                SoLuongDaBan = 0
-            };
+        //    // Truy xuất sản phẩm từ cơ sở dữ liệu
+        //    var product = await _context.Sanphams.FirstOrDefaultAsync(p => p.MaSp == productId);
 
-            // Danh sách để lưu tên hoặc URL ảnh
-            var imageUrls = new List<string>();
+        //    if (product == null)
+        //    {
+        //        return (false, "Sản phẩm không tồn tại.");
+        //    }
 
-            // Lưu ảnh lên MinIO và lưu tên ảnh vào cơ sở dữ liệu
-            if (model.Images != null && model.Images.Length > 0)
-            {
-                for (int i = 0; i < model.Images.Length && i < 6; i++)
-                {
-                    var image = model.Images[i];
-                    if (image != null && image.Length > 0)
-                    {
-                        string imageUrl;
-                        try
-                        {
-                            // Tải ảnh lên MinIO và lấy URL hoặc tên ảnh
-                            imageUrl = await _minioService.UploadFileAsync(image);
+        //    // Kiểm tra tồn kho
+        //    if (product.SoLuongTrongKho < quantity)
+        //    {
+        //        return (false, $"Số lượng yêu cầu vượt quá tồn kho. Tồn kho hiện tại: {product.SoLuongTrongKho}.");
+        //    }
 
-                            // Thêm URL vào danh sách
-                            imageUrls.Add(imageUrl);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw new Exception($"Lỗi khi tải ảnh lên MinIO: {ex.Message}");
-                        }
-                    }
-                }
+        //    // Nếu cần, bạn có thể cập nhật số lượng trong cơ sở dữ liệu tại đây
+        //    // Ví dụ: Giảm tồn kho nếu muốn cập nhật tồn kho theo giỏ hàng
+        //    // product.Stock -= quantity;
+        //    // _context.Products.Update(product);
+        //    // await _context.SaveChangesAsync();
 
-                // Gán URL ảnh vào các thuộc tính tương ứng trong spmoi
-                if (imageUrls.Count > 0) spmoi.Anh1 = imageUrls.ElementAtOrDefault(0);
-                if (imageUrls.Count > 1) spmoi.Anh2 = imageUrls.ElementAtOrDefault(1);
-                if (imageUrls.Count > 2) spmoi.Anh3 = imageUrls.ElementAtOrDefault(2);
-                if (imageUrls.Count > 3) spmoi.Anh4 = imageUrls.ElementAtOrDefault(3);
-                if (imageUrls.Count > 4) spmoi.Anh5 = imageUrls.ElementAtOrDefault(4);
-                if (imageUrls.Count > 5) spmoi.Anh6 = imageUrls.ElementAtOrDefault(5);
-            }
-            else
-            {
-                throw new Exception("Vui lòng tải lên ít nhất một ảnh cho sản phẩm.");
-            }
-
-            // Thêm sản phẩm vào cơ sở dữ liệu
-            try
-            {
-                _context.Sanphams.Add(spmoi);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Lỗi khi lưu sản phẩm: {ex.Message}");
-            }
-        }
-
-
-        public async Task<IActionResult> DeleteProduct(int productId)
-        {
-            var sp = await _context.Sanphams.FindAsync(productId);
-            if (sp == null)
-            {
-                return new NotFoundObjectResult(new { status = false, message = "Không tìm thấy sản phẩm" });
-            }
-
-            // Xóa các ảnh liên quan trên MinIO
-            if (!string.IsNullOrEmpty(sp.Anh1)) await _minioService.DeleteFileAsync(sp.Anh1);
-            if (!string.IsNullOrEmpty(sp.Anh2)) await _minioService.DeleteFileAsync(sp.Anh2);
-            if (!string.IsNullOrEmpty(sp.Anh3)) await _minioService.DeleteFileAsync(sp.Anh3);
-            if (!string.IsNullOrEmpty(sp.Anh4)) await _minioService.DeleteFileAsync(sp.Anh4);
-            if (!string.IsNullOrEmpty(sp.Anh5)) await _minioService.DeleteFileAsync(sp.Anh5);
-            if (!string.IsNullOrEmpty(sp.Anh6)) await _minioService.DeleteFileAsync(sp.Anh6);
-
-            _context.Sanphams.Remove(sp);
-            await _context.SaveChangesAsync();
-
-            return new OkObjectResult(new { status = true });
-        }
-        public async Task<(bool IsSuccess, string Message)> UpdateCartItemQuantityAsync(int productId, int quantity)
-        {
-            if (quantity <= 0)
-            {
-                return (false, "Số lượng phải lớn hơn 0.");
-            }
-
-            // Truy xuất sản phẩm từ cơ sở dữ liệu
-            var product = await _context.Sanphams.FirstOrDefaultAsync(p => p.MaSp == productId);
-
-            if (product == null)
-            {
-                return (false, "Sản phẩm không tồn tại.");
-            }
-
-            // Kiểm tra tồn kho
-            if (product.SoLuongTrongKho < quantity)
-            {
-                return (false, $"Số lượng yêu cầu vượt quá tồn kho. Tồn kho hiện tại: {product.SoLuongTrongKho}.");
-            }
-
-            // Nếu cần, bạn có thể cập nhật số lượng trong cơ sở dữ liệu tại đây
-            // Ví dụ: Giảm tồn kho nếu muốn cập nhật tồn kho theo giỏ hàng
-            // product.Stock -= quantity;
-            // _context.Products.Update(product);
-            // await _context.SaveChangesAsync();
-
-            // Trả về phản hồi thành công
-            return (true, "Số lượng sản phẩm còn đủ.");
-        }
-        public async Task<IActionResult> UpdateProduct(Sanpham spmoi, IFormFile[] images, string DanhMuc, string Hang)
-        {
-            var sp = await _context.Sanphams.FindAsync(spmoi.MaSp);
-            if (sp == null)
-            {
-                return new NotFoundObjectResult(new { status = false, message = "Không tìm thấy sản phẩm" });
-            }
-
-            sp.TenSp = spmoi.TenSp;
-            sp.MoTa = spmoi.MoTa;
-            sp.GiaTien = spmoi.GiaTien;
-            sp.SoLuongTrongKho = spmoi.SoLuongTrongKho;
-            sp.SoLuongDaBan = spmoi.SoLuongDaBan;
-
-            // Lưu ảnh mới lên MinIO và cập nhật URL
-            for (int i = 0; i < images.Length && i < 6; i++)
-            {
-                if (images[i] != null && images[i].Length > 0)
-                {
-                    // Xóa ảnh cũ trên MinIO nếu có
-                    switch (i)
-                    {
-                        case 0: if (!string.IsNullOrEmpty(sp.Anh1)) await _minioService.DeleteFileAsync(sp.Anh1); break;
-                        case 1: if (!string.IsNullOrEmpty(sp.Anh2)) await _minioService.DeleteFileAsync(sp.Anh2); break;
-                        case 2: if (!string.IsNullOrEmpty(sp.Anh3)) await _minioService.DeleteFileAsync(sp.Anh3); break;
-                        case 3: if (!string.IsNullOrEmpty(sp.Anh4)) await _minioService.DeleteFileAsync(sp.Anh4); break;
-                        case 4: if (!string.IsNullOrEmpty(sp.Anh5)) await _minioService.DeleteFileAsync(sp.Anh5); break;
-                        case 5: if (!string.IsNullOrEmpty(sp.Anh6)) await _minioService.DeleteFileAsync(sp.Anh6); break;
-                    }
-
-                    // Tải ảnh mới lên MinIO và nhận URL của ảnh
-                    string imageUrl;
-                    try
-                    {
-                        imageUrl = await _minioService.UploadFileAsync(images[i]);
-                    }
-                    catch (Exception ex)
-                    {
-                        return new BadRequestObjectResult(new { status = false, message = $"Lỗi khi tải ảnh lên MinIO: {ex.Message}" });
-                    }
-
-                    // Cập nhật URL mới vào các trường ảnh tương ứng
-                    switch (i)
-                    {
-                        case 0: sp.Anh1 = imageUrl; break;
-                        case 1: sp.Anh2 = imageUrl; break;
-                        case 2: sp.Anh3 = imageUrl; break;
-                        case 3: sp.Anh4 = imageUrl; break;
-                        case 4: sp.Anh5 = imageUrl; break;
-                        case 5: sp.Anh6 = imageUrl; break;
-                    }
-                }
-            }
-            int iddm = int.Parse(DanhMuc);
-            int idh = int.Parse(Hang);
-            // Lưu danh mục và hãng
-            var dm = _context.Danhmucsanphams.FirstOrDefault(s => s.MaDanhMuc == iddm);
-            if (dm != null) sp.MaDanhMuc = dm.MaDanhMuc;
-
-            var hang = _context.Hangsanxuats.FirstOrDefault(s => s.MaHang == idh);
-            if (hang != null) sp.MaHang = hang.MaHang;
-
-            await _context.SaveChangesAsync();
-
-            return new OkObjectResult(new { status = true });
-        }
+        //    // Trả về phản hồi thành công
+        //    return (true, "Số lượng sản phẩm còn đủ.");
+        //}
 
         // Home functions
         public async Task<IActionResult> GetTopSellingProducts()
@@ -459,14 +254,14 @@ namespace OtherServices.Services.Implementations
         }
 
         public async Task<IActionResult> SearchProducts(
-     string? search,
-     string? idCategories,
-     string? idHangs,
-     int pageIndex,
-     int pageSize,
-     string? maxPrice,
-     string? minPrice,
-     string orderPrice)
+            string? search,
+            string? idCategories,
+            string? idHangs,
+            int pageIndex,
+            int pageSize,
+            string? maxPrice,
+            string? minPrice,
+            string orderPrice)
         {
             // Khởi tạo query sản phẩm
             IQueryable<Sanpham> model = _context.Sanphams;

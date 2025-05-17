@@ -33,7 +33,7 @@ public partial class Sanpham
 
     public int? MaDanhMuc { get; set; }
 
-    public virtual ICollection<Chitietdonhang> Chitietdonhangs { get; set; } = new List<Chitietdonhang>();
+    //public virtual ICollection<Chitietdonhang> Chitietdonhangs { get; set; } = new List<Chitietdonhang>();
 
     //public virtual ICollection<GioHang> GioHangs { get; set; } = new List<GioHang>();
 

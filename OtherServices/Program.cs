@@ -178,7 +178,6 @@ builder.Services.AddScoped<IMinioService, MinioService>();
 builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddScoped<IPermissionService, PermissionService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
-builder.Services.AddScoped<IOrderNotificationService, OrderNotificationService>();
 
 var mongoSettings = builder.Configuration.GetSection("MongoSettings");
 string connectionString = mongoSettings["ConnectionString"];
@@ -237,7 +236,6 @@ app.Use(async (context, next) =>
 });
 
 app.MapHub<ChatHub>("/chathub");
-app.MapHub<OrderHub>("/orderHub");
 
 app.MapControllers();
 
