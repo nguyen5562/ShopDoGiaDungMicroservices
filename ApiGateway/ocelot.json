@@ -5,20 +5,44 @@
       "DownstreamPathTemplate": "/api/Account/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5012 }
+        {
+          "Host": "localhost",
+          "Port": 5012
+        }
       ],
       "UpstreamPathTemplate": "/api/Account/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/TaiKhoan/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5012 }
+        {
+          "Host": "localhost",
+          "Port": 5012
+        }
       ],
       "UpstreamPathTemplate": "/api/TaiKhoan/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
 
@@ -27,10 +51,22 @@
       "DownstreamPathTemplate": "/api/AccessControllerAPI/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5232 }
+        {
+          "Host": "localhost",
+          "Port": 5232
+        }
       ],
       "UpstreamPathTemplate": "/api/AccessControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
 
@@ -39,20 +75,44 @@
       "DownstreamPathTemplate": "/api/CartControllerAPI/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5195 }
+        {
+          "Host": "localhost",
+          "Port": 5195
+        }
       ],
       "UpstreamPathTemplate": "/api/CartControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/Order/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5195 }
+        {
+          "Host": "localhost",
+          "Port": 5195
+        }
       ],
       "UpstreamPathTemplate": "/api/Order/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
 
@@ -61,40 +121,110 @@
       "DownstreamPathTemplate": "/api/Chat/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5237 }
+        {
+          "Host": "localhost",
+          "Port": 5237
+        }
       ],
       "UpstreamPathTemplate": "/api/Chat/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/Log/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5237 }
+        {
+          "Host": "localhost",
+          "Port": 5237
+        }
       ],
       "UpstreamPathTemplate": "/api/Log/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/Statistics/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5237 }
+        {
+          "Host": "localhost",
+          "Port": 5237
+        }
       ],
       "UpstreamPathTemplate": "/api/Statistics/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/HomeControllerAPI/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5237 }
+        {
+          "Host": "localhost",
+          "Port": 5237
+        }
       ],
       "UpstreamPathTemplate": "/api/HomeControllerAPI/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/chathub/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/api/chathub/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
 
@@ -103,72 +233,155 @@
       "DownstreamPathTemplate": "/api/Brand/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5115 }
+        {
+          "Host": "localhost",
+          "Port": 5115
+        }
       ],
       "UpstreamPathTemplate": "/api/Brand/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/Category/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5115 }
+        {
+          "Host": "localhost",
+          "Port": 5115
+        }
       ],
       "UpstreamPathTemplate": "/api/Category/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/Product/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5115 }
+        {
+          "Host": "localhost",
+          "Port": 5115
+        }
       ],
       "UpstreamPathTemplate": "/api/Product/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
-
 
     // Role Services
     {
       "DownstreamPathTemplate": "/api/ChucNang/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5015 }
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
       ],
       "UpstreamPathTemplate": "/api/ChucNang/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/ChucVu/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5015 }
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
       ],
       "UpstreamPathTemplate": "/api/ChucVu/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/HanhDong/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5015 }
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
       ],
       "UpstreamPathTemplate": "/api/HanhDong/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     },
 
     {
       "DownstreamPathTemplate": "/api/PhanQuyen/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "localhost", "Port": 5015 }
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
       ],
       "UpstreamPathTemplate": "/api/PhanQuyen/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
     }
   ],
   "GlobalConfiguration": {

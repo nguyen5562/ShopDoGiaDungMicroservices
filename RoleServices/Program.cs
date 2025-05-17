@@ -56,7 +56,7 @@ builder.WebHost.ConfigureKestrel(options =>
     // Lắng nghe trên cổng 7248 cho HTTPS
     options.Listen(IPAddress.Loopback, 7188, listenOptions =>
     {
-        listenOptions.UseHttps();  // Kết nối qua HTTPS
+        // listenOptions.UseHttps();  // Kết nối qua HTTPS
     });
 });
 
@@ -211,7 +211,7 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseHttpsRedirection();
+ 
 
 app.UseAuthentication();
 app.UseAuthorization();
