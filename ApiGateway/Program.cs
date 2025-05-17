@@ -23,6 +23,8 @@ builder.Services.AddOcelot();
 
 var app = builder.Build();
 
+app.UseWebSockets();
+
 app.UseCors();
 // Dùng Ocelot Middleware
 await app.UseOcelot();
