@@ -1,5 +1,5 @@
 # Danh sách các thư mục service
-$services = @("AccountServices", "ApiGateway", "AuthServices", "OrderServices", "OtherServices", "ProductServices")
+$services = @("AccountServices", "ApiGateway", "AuthServices", "OrderServices", "OtherServices", "ProductServices", "RoleServices")
 
 # Chạy từng service trong một terminal riêng
 foreach ($service in $services) {
