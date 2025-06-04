@@ -1,0 +1,150 @@
+version: '3.8'
+
+services:
+  product-service:
+    build:
+      context: ./ProductServices
+      dockerfile: Dockerfile
+    ports:
+      - "5115:5115"  # HTTP port
+      - "7252:7252"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5115;https://+:7252
+    depends_on:
+      - db
+      - redis
+      - minio
+
+  order-service:
+    build:
+      context: ./OrderServices
+      dockerfile: Dockerfile
+    ports:
+      - "5195:5195"  # HTTP port
+      - "7079:7079"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5195;https://+:7079
+    depends_on:
+      - db
+      - redis
+
+  account-service:
+    build:
+      context: ./AccountServices
+      dockerfile: Dockerfile
+    ports:
+      - "5012:5012"  # HTTP port
+      - "7144:7144"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5012;https://+:7144
+    depends_on:
+      - db
+      - redis
+
+  auth-service:
+    build:
+      context: ./AuthServices
+      dockerfile: Dockerfile
+    ports:
+      - "5232:5232"  # HTTP port
+      - "7015:7015"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5232;https://+:7015
+    depends_on:
+      - db
+      - redis
+
+  role-service:
+    build:
+      context: ./RoleServices
+      dockerfile: Dockerfile
+    ports:
+      - "5015:5015"  # HTTP port
+      - "7188:7188"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5015;https://+:7188
+    depends_on:
+      - db
+      - redis
+
+  other-service:
+    build:
+      context: ./OtherServices
+      dockerfile: Dockerfile
+    ports:
+      - "5237:5237"  # HTTP port
+      - "7108:7108"  # HTTPS port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ShopDoGiaDung;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True
+      - ASPNETCORE_URLS=http://+:5237;https://+:7108
+    depends_on:
+      - db
+      - redis
+
+  api-gateway:
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # HTTP port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ProductService__Host=product-service
+      - OrderService__Host=order-service
+      - AccountService__Host=account-service
+      - AuthService__Host=auth-service
+      - RoleService__Host=role-service
+      - OtherService__Host=other-service
+    depends_on:
+      - product-service
+      - order-service
+      - account-service
+      - auth-service
+      - role-service
+      - other-service
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - miniodata:/data
+    command: server /data --console-address ":9001"
+
+volumes:
+  sqldata:
+  redisdata:
+  miniodata: 

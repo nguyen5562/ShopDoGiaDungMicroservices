@@ -1,0 +1,326 @@
+{
+  "Routes": [
+    // Account Services
+    {
+      "DownstreamPathTemplate": "/api/Account/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account-service",
+          "Port": 5012
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Account/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/TaiKhoan/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account-service",
+          "Port": 5012
+        }
+      ],
+      "UpstreamPathTemplate": "/api/TaiKhoan/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    // Auth Services
+    {
+      "DownstreamPathTemplate": "/api/AccessControllerAPI/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "auth-service",
+          "Port": 5232
+        }
+      ],
+      "UpstreamPathTemplate": "/api/AccessControllerAPI/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    // Order Services
+    {
+      "DownstreamPathTemplate": "/api/CartControllerAPI/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "order-service",
+          "Port": 5195
+        }
+      ],
+      "UpstreamPathTemplate": "/api/CartControllerAPI/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Order/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "order-service",
+          "Port": 5195
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Order/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/orderHub/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "order-service",
+          "Port": 5195
+        }
+      ],
+      "UpstreamPathTemplate": "/orderHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "EnableWebSocket": true
+    },
+
+    // Other Services
+    {
+      "DownstreamPathTemplate": "/api/Chat/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "other-service",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Chat/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Log/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "other-service",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Log/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Statistics/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "other-service",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Statistics/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/HomeControllerAPI/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "other-service",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/api/HomeControllerAPI/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/chathub/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "other-service",
+          "Port": 5237
+        }
+      ],
+      "UpstreamPathTemplate": "/chathub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "EnableWebSocket": true
+    },
+
+    // Product Services
+    {
+      "DownstreamPathTemplate": "/api/Brand/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-service",
+          "Port": 5115
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Brand/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Category/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-service",
+          "Port": 5115
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Category/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Product/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-service",
+          "Port": 5115
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Product/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    },
+
+    // Role Services
+    {
+      "DownstreamPathTemplate": "/api/ChucVu/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "role-service",
+          "Port": 5015
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ChucVu/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+} 
